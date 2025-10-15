@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание Умного Цветка в Blender 4.5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        .tutorial-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: #2980b9;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.4rem;
+        }
+
+        .step {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .hotkey {
+            display: inline-block;
+            background: #34495e;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 0 2px;
+            font-size: 0.9rem;
+        }
+
+        .menu-path {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+
+        .sidebar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .tools-list {
+            list-style: none;
+        }
+
+        .tools-list li {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #3498db;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .nav-button {
+            padding: 12px 25px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-button.prev {
+            background: #95a5a6;
+        }
+
+        .nav-button.prev:hover {
+            background: #7f8c8d;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #7f8c8d;
+            border-top: 1px solid #bdc3c7;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Создание "Умного Цветка" в Blender 4.5</h1>
+            <p class="subtitle">Полное руководство по моделированию и скульптингу</p>
+        </header>
+
+        <div class="main-content">
+            <div class="content">
+                <section class="tutorial-section">
+                    <h2>1.1. Создание сцены и настройка</h2>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        Запустите <strong>Blender 4.5</strong>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        Выделите стандартный куб и удалите его: 
+                        <span class="hotkey">X</span> → <strong>Delete</strong>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        Сохраните проект: 
+                        <span class="menu-path">File</span> → 
+                        <span class="menu-path">Save As</span> → 
+                        имя <strong>"Smart_Flower"</strong>
+                    </div>
+                </section>
+
+                <section class="tutorial-section">
+                    <h2>1.2. Стебель через Sculpt Mode (Scaffold)</h2>
+                    
+                    <h3>Добавление меша Scaffold</h3>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        Нажмите <span class="hotkey">Shift + A</span> → 
+                        <span class="menu-path">Mesh</span> → 
+                        <span class="menu-path">Scaffold</span>
+                    </div>
+
+                    <h3>Переход в режим скульптинга</h3>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        Верхнее меню → <strong>Sculpting</strong> или 
+                        <span class="hotkey">Ctrl + Tab</span> → 
+                        <strong>Sculpt Mode</strong>
+                    </div>
+
+                    <h3>Настройка кистей</h3>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        На панели слева выберите <strong>Draw Sharp</strong>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <span class="hotkey">F</span> - размер кисти, 
+                        <span class="hotkey">Shift + F</span> - сила кисти
+                    </div>
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        Проведите по сетке, чтобы вытянуть изогнутый стебель
+                    </div>
+                </section>
+
+                <section class="tutorial-section">
+                    <h2>1.3. Бутон через Geometry Nodes</h2>
+                    
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        Вернитесь в <strong>Object Mode</strong> (<span class="hotkey">Tab</span>)
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        Добавьте сферу: <span class="hotkey">Shift + A</span> → 
+                        <span class="menu-path">Mesh</span> → 
+                        <span class="menu-path">UV Sphere</span>
+                    </div>
+                    
+                    <h3>Добавление модификатора Geometry Nodes</h3>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        Правая панель → <span class="menu-path">Modifier Properties</span> → 
+                        <span class="menu-path">Add Modifier</span> → 
+                        <span class="menu-path">GeometryNodes</span>
+                    </div>
+                </section>
+
+                <div class="nav-buttons">
+                    <button class="nav-button prev">
+                        ← Назад
+                    </button>
+                    <button class="nav-button next">
+                        Далее →
+                    </button>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <h2>Инструменты и горячие клавиши</h2>
+                <ul class="tools-list">
+                    <li><strong>Draw Sharp</strong> - вытягивание формы</li>
+                    <li><strong>Clay Strips</strong> - создание рельефа</li>
+                    <li><strong>Elastic Deform</strong> - плавное изгибание</li>
+                    <li><strong>Mask (M)</strong> - создание масок</li>
+                    <li><strong>Inflate</strong> - раздувание поверхности</li>
+                    <li><strong>Ctrl + I</strong> - инвертировать маску</li>
+                    <li><strong>Shift + A</strong> - добавить объект</li>
+                    <li><strong>Tab</strong> - переключение режимов</li>
+                    <li><strong>Ctrl + Tab</strong> - выбор режима</li>
+                </ul>
+
+                <h2>Советы</h2>
+                <ul class="tools-list">
+                    <li>Часто сохраняйтесь (<span class="hotkey">Ctrl + S</span>)</li>
+                    <li>Используйте числовые клавиши для быстрого доступа к слоям</li>
+                    <li>Экспериментируйте с силой и размером кистей</li>
+                    <li>Не бойтесь отменять действия (<span class="hotkey">Ctrl + Z</span>)</li>
+                </ul>
+            </aside>
+        </div>
+
+        <footer>
+            <p>© 2024 Руководство по Blender 4.5 | Для начинающих 3D-художников</p>
+        </footer>
+    </div>
+
+    <script>
+        // Простая навигация между шагами
+        document.querySelector('.nav-button.next').addEventListener('click', function() {
+            alert('Переход к следующему этапу моделирования цветка!');
+            // Здесь можно добавить реальную навигацию
+        });
+
+        document.querySelector('.nav-button.prev').addEventListener('click', function() {
+            alert('Возврат к предыдущему шагу!');
+            // Здесь можно добавить реальную навигацию
+        });
+
+        // Добавляем плавное появление элементов
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.tutorial-section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    section.style.transition = 'all 0.6s ease';
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
